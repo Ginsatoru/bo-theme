@@ -1,0 +1,359 @@
+/* ==========================================================================
+   Hero Section Styles
+   ==========================================================================
+   
+   Colors controlled via: Customizer > Theme Colors
+   All hardcoded colors replaced with CSS variables.
+   
+   @package aaapos-prime
+   @since 1.0.0
+   ========================================================================== */
+
+/* Prevent horizontal scrollbar on body */
+body {
+    overflow-x: hidden;
+}
+
+/* Hero Section - SLIGHTLY INCREASED HEIGHT */
+.hero-section {
+  position: relative;
+  height: 60vh;
+  min-height: 450px; 
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: var(--color-black); /* Fallback background */
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    height: 70vh; /* Increased from 65vh */
+    min-height: 520px; /* Increased from 480px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    height: 75vh; /* Increased from 70vh */
+    min-height: 600px; /* Increased from 550px */
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-section {
+    height: 78vh; /* Increased from 72vh */
+    max-height: 900px; /* Increased from 800px */
+  }
+}
+
+/* Hero Slider Container */
+.hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-black);
+}
+
+.hero-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-black);
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1),
+              opacity 0.8s ease,
+              visibility 0.8s ease;
+  z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  z-index: 3;
+}
+
+.hero-slide.prev {
+  transform: translateX(-100%);
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.hero-slide.next {
+  transform: translateX(100%);
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 0;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+  z-index: 1;
+}
+
+/* Hero Content Container */
+.hero-content-container {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .hero-content-container {
+    padding: 0 2rem;
+  }
+}
+
+.hero-content {
+  max-width: 672px;
+  width: 100%;
+}
+
+/* Hero Badge - SMALLER */
+.hero-badge-wrapper {
+  margin-bottom: 0.75rem; /* Reduced from 1rem */
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 0.6875rem; /* Reduced from 0.75rem */
+  font-weight: 600;
+  padding: 0.4375rem 0.875rem; /* Reduced from 0.5rem 1rem */
+  border-radius: 9999px;
+}
+
+/* Hero Title - SMALLER FONT SIZES */
+.hero-title {
+  font-size: 1.5rem; /* Reduced from 1.875rem */
+  font-weight: 700;
+  color: var(--color-white) !important;
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 2rem; /* Reduced from 2.5rem */
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 2.5rem; /* Reduced from 3rem */
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-title {
+    font-size: 3rem; /* Reduced from 3.75rem */
+  }
+}
+
+.hero-title-highlight {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--color-primary-light) !important;
+}
+
+/* Hero Subtitle - SMALLER FONT SIZE */
+.hero-subtitle {
+  font-size: 0.9375rem; /* Reduced from 1.125rem */
+  color: var(--color-white) !important;
+  margin-bottom: 1.5rem; /* Reduced from 2rem */
+  line-height: 1.6;
+  opacity: 1;
+}
+
+/* Additional specificity for subtitle */
+.hero-section .hero-subtitle,
+.hero-content .hero-subtitle,
+.hero-section p.hero-subtitle {
+  color: var(--color-white) !important;
+}
+
+@media (min-width: 768px) {
+  .hero-subtitle {
+    font-size: 1rem; /* Reduced from 1.25rem */
+  }
+}
+
+/* Hero Buttons - SLIGHTLY SMALLER */
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem; /* Reduced from 1rem */
+  margin-bottom: 2rem; /* Reduced from 3rem */
+}
+
+@media (min-width: 640px) {
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9375rem; /* Added smaller font */
+  padding: 0.875rem 1.75rem; /* Reduced from 1rem 2rem */
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-btn:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-btn-icon {
+  width: 1.125rem; /* Reduced from 1.25rem */
+  height: 1.125rem;
+  margin-left: 0.5rem;
+}
+
+.hero-btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.hero-btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-white);
+}
+
+.hero-btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  color: var(--color-white);
+  border: none;
+}
+
+.hero-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+}
+
+/* Trust Indicators - SMALLER FONT SIZES */
+.hero-trust-indicators {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; /* Reduced from 2rem */
+}
+
+.trust-item {
+  text-align: center;
+}
+
+.trust-number {
+  font-size: 1.5rem; /* Reduced from 1.875rem */
+  font-weight: 700;
+  color: var(--color-white) !important;
+  margin-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .trust-number {
+    font-size: 1.875rem; /* Reduced from 2.25rem */
+  }
+}
+
+.trust-label {
+  font-size: 0.8125rem; /* Reduced from 0.875rem */
+  color: var(--color-white) !important;
+  opacity: 1;
+}
+
+/* Ensure no extra spacing on home page */
+.home .site-main {
+  padding-top: 0;
+}
+
+/* Other pages still need padding for fixed header */
+.page:not(.home) .site-main,
+.single .site-main,
+.archive .site-main {
+  padding-top: 80px;
+}
+
+@media (min-width: 768px) {
+  .page:not(.home) .site-main,
+  .single .site-main,
+  .archive .site-main {
+    padding-top: 135px; /* topbar + header */
+  }
+}
+
+/* Static Hero Background */
+.hero-section.hero-static {
+    position: relative;
+}
+
+.hero-static-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-black);
+}
+
+.hero-static-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-static-background .slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 1;
+}

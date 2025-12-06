@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Header Main - Import File
+   ==========================================================================
+   
+   This file imports all header component styles.
+   Include only this file in your functions.php
+   
+   @package aaapos-prime
+   @since 1.0.0
+   ========================================================================== */
+
+/* Import all header components */
+@import '_topbar.css';
+@import '_logo.css';
+@import '_navigation.css';
+@import '_mobile-menu.css';
+@import '_header-actions.css';
+@import '_dropdowns.css';
+
+/* ==========================================================================
+   MAIN HEADER CONTAINER
+   ========================================================================== */
+
+.site-header {
+  background: rgba(255, 255, 255, 0.98);
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 80px;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .site-header {
+    height: 90px;
+    top: 45px;
+  }
+}
+
+.site-header.is-sticky {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: var(--color-header-bg);
+}
+
+body.scrolled .top-bar {
+  transform: translateY(-100%);
+}
+
+body.scrolled .site-header {
+  top: 0;
+}
+
+.site-header .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  max-width: none;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  gap: var(--space-6);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 27px 0 33px;
+}
+
+@media (min-width: 768px) {
+  .header-inner {
+    padding: 0 22px 0 39px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-inner {
+    padding: 0 23px 0 49px;
+  }
+}
+
+/* ==========================================================================
+   BODY STATES
+   ========================================================================== */
+
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999999;
+  padding: 1rem;
+  background: var(--brand-color);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* ==========================================================================
+   HIGH CONTRAST & REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  .site-header {
+    border-bottom-width: 2px;
+  }
+
+  .nav-menu > li > a::after {
+    height: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .nav-menu a,
+  .header-action,
+  .top-bar-item,
+  .social-link,
+  .cart-dropdown,
+  .account-dropdown,
+  .nav-menu .sub-menu,
+  .main-navigation {
+    transition: none;
+  }
+
+  .nav-menu > li > a::after {
+    transition: none;
+  }
+}

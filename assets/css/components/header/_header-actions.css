@@ -1,0 +1,194 @@
+/* ==========================================================================
+   Header Actions (Search, Account, Cart Buttons)
+   ========================================================================== */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.header-action {
+  color: var(--color-header-text);
+  padding: var(--space-2);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.header-action:hover {
+  color: var(--brand-color);
+  background: var(--color-bg-tertiary);
+  transform: translateY(-2px);
+}
+
+.header-action svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.account-username {
+  font-size: 0.9rem;
+  font-weight: var(--font-semibold);
+  white-space: nowrap;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .account-username {
+    display: block;
+  }
+}
+
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--brand-color);
+  color: var(--color-white);
+  font-size: 0.7rem;
+  font-weight: var(--font-semibold);
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+/* ==========================================================================
+   HEADER SEARCH BAR (Desktop)
+   ========================================================================== */
+
+.header-search-bar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header-search-bar {
+    display: block;
+  }
+}
+
+.header-search-bar .search-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 280px;
+}
+
+.header-search-bar .search-field {
+  width: 100%;
+  padding: 8px 45px 8px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-full);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+}
+
+.header-search-bar .search-field:focus {
+  outline: none;
+  border-color: var(--brand-color);
+  background: var(--color-bg-primary);
+}
+
+.header-search-bar .search-field::placeholder {
+  color: var(--color-text-light);
+}
+
+.header-search-bar .search-submit {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.header-search-bar .search-submit:hover {
+  background: var(--color-border);
+}
+
+.header-search-bar .search-submit img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) saturate(100%);
+}
+
+.header-search-bar .search-submit svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .header-actions .account-link {
+    display: flex;
+  }
+
+  .account-username {
+    display: none;
+  }
+
+  /* Hide account and cart dropdowns on mobile */
+  .account-dropdown,
+  .cart-dropdown {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .header-actions .cart-link {
+    padding: var(--space-1);
+  }
+
+  .header-actions {
+    gap: var(--space-2);
+  }
+}
+
+/* Mobile Icon Adjustments */
+@media (max-width: 1023px) {
+  .header-action {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 6px !important;
+  }
+
+  .header-action svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .cart-count {
+    top: -2px !important;
+    right: -2px !important;
+  }
+}
