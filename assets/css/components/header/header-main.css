@@ -9,8 +9,7 @@
    @since 1.0.0
    ========================================================================== */
 
-/* Import all header components */
-@import '_topbar.css';
+/* Import all header components (topbar removed) */
 @import '_logo.css';
 @import '_navigation.css';
 @import '_mobile-menu.css';
@@ -18,14 +17,11 @@
 @import '_dropdowns.css';
 
 /* ==========================================================================
-   MAIN HEADER CONTAINER
+   MAIN HEADER CONTAINER - OVERLAY VERSION
    ========================================================================== */
 
 .site-header {
-  background: rgba(255, 255, 255, 0.98);
-  background-color: var(--color-header-bg);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  /* margin-top: -32px !important; */
   position: fixed;
   top: 0;
   left: 0;
@@ -33,26 +29,165 @@
   z-index: 1000;
   height: 80px;
   transition: all 0.3s ease;
+  /* Mobile: solid background */
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
 }
 
-@media (min-width: 768px) {
-  .site-header {
-    height: 90px;
-    top: 45px;
+/* Handle WordPress admin bar */
+.admin-bar .site-header {
+  top: 32px; /* Desktop admin bar */
+}
+
+@media (max-width: 782px) {
+  .admin-bar .site-header {
+    top: 46px; /* Mobile admin bar */
   }
 }
 
-.site-header.is-sticky {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  background: var(--color-header-bg);
+/* Desktop: transparent overlay by default */
+@media (min-width: 992px) {
+  .site-header {
+    height: 90px;
+    background: none !important;
+    backdrop-filter: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Override inline styles from JavaScript - force to 0 when NOT admin bar */
+  body:not(.admin-bar) .site-header {
+    top: 0 !important;
+  }
+  
+  /* With admin bar, stay at 32px */
+  .admin-bar .site-header {
+    top: 32px !important;
+  }
+
+  /* Add subtle text shadow for readability over hero images */
+  .site-header .nav-menu a,
+  .site-header .site-branding a,
+  .site-header .site-branding h1 {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .site-header .header-action svg {
+    color: rgba(255, 255, 255, 0.95) !important;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  }
+
+  .site-header .account-username {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .site-header .cart-count {
+    background: var(--color-primary) !important;
+    color: white !important;
+  }
+
+  /* Search bar styling for overlay */
+  .site-header .header-search-bar .search-field {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+  }
+
+  .site-header .header-search-bar .search-field::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  .site-header .header-search-bar .search-field:focus {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .site-header .header-search-bar .search-submit svg {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  /* Hover states for nav links */
+  .site-header .nav-menu > li > a:hover {
+    color: white !important;
+  }
+
+  .site-header .nav-menu > li > a::after {
+    background: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  /* Hover states for header actions */
+  .site-header .header-action:hover svg {
+    color: white !important;
+  }
+
+  .site-header .account-username:hover {
+    color: white !important;
+  }
 }
 
-body.scrolled .top-bar {
-  transform: translateY(-100%);
-}
+/* Scrolled state - solid background on desktop */
+@media (min-width: 992px) {
+  .site-header.is-sticky {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  }
 
-body.scrolled .site-header {
-  top: 0;
+  /* Revert text colors when scrolled */
+  .site-header.is-sticky .nav-menu a,
+  .site-header.is-sticky .site-branding a,
+  .site-header.is-sticky .site-branding h1 {
+    color: var(--color-header-text) !important;
+    text-shadow: none !important;
+  }
+
+  .site-header.is-sticky .header-action svg {
+    color: var(--color-header-text) !important;
+    filter: none !important;
+  }
+
+  .site-header.is-sticky .account-username {
+    color: var(--color-header-text) !important;
+    text-shadow: none !important;
+  }
+
+  /* Search bar back to normal when scrolled */
+  .site-header.is-sticky .header-search-bar .search-field {
+    background: var(--color-bg-secondary) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text) !important;
+  }
+
+  .site-header.is-sticky .header-search-bar .search-field::placeholder {
+    color: var(--color-text-light) !important;
+  }
+
+  .site-header.is-sticky .header-search-bar .search-field:focus {
+    background: var(--color-bg-primary) !important;
+    border-color: var(--brand-color) !important;
+  }
+
+  .site-header.is-sticky .header-search-bar .search-submit svg {
+    color: var(--color-text) !important;
+  }
+
+  .site-header.is-sticky .nav-menu > li > a::after {
+    background: var(--brand-color) !important;
+  }
+
+  /* Hover states when scrolled - back to original colors */
+  .site-header.is-sticky .nav-menu > li > a:hover {
+    color: var(--brand-color) !important;
+  }
+
+  .site-header.is-sticky .header-action:hover svg {
+    color: var(--brand-color) !important;
+  }
 }
 
 .site-header .container {
@@ -72,18 +207,18 @@ body.scrolled .site-header {
   gap: var(--space-6);
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 27px 0 33px;
+  padding: 0 1rem; /* Simplified padding - NO negative margin */
 }
 
 @media (min-width: 768px) {
   .header-inner {
-    padding: 0 22px 0 39px;
+    padding: 0 1.5rem; /* Simplified padding */
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
   .header-inner {
-    padding: 0 23px 0 49px;
+    padding: 0 2rem; /* Simplified padding */
   }
 }
 
@@ -144,7 +279,6 @@ body.menu-open {
   .site-header,
   .nav-menu a,
   .header-action,
-  .top-bar-item,
   .social-link,
   .cart-dropdown,
   .account-dropdown,

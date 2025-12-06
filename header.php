@@ -1,6 +1,6 @@
 <?php
 /**
- * The header for our theme (header.php) - MODERN VERSION WITH UPDATED ICONS
+ * The header for our theme (header.php) - OVERLAY VERSION
  * 
  * This is the template that displays all of the <head> section and everything up until <div id="content">
  *
@@ -26,16 +26,7 @@
         <?php esc_html_e('Skip to content', 'macedon-ranges'); ?>
     </a>
 
-    <?php
-    /**
-     * Top Bar - Only visible on desktop (768px+)
-     */
-    if (get_theme_mod('show_top_bar', true)) {
-        get_template_part('template-parts/header/topbar');
-    }
-    ?>
-
-    <!-- Main Header -->
+    <!-- Main Header - Now Overlay on Desktop -->
     <header id="masthead" class="site-header" role="banner">
         <div class="container">
             <div class="header-inner">

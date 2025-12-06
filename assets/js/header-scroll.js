@@ -1,6 +1,7 @@
 /**
- * Header Scroll Behavior
- * Hides topbar and adjusts header position on scroll
+ * Header Scroll Behavior - OVERLAY VERSION (FIXED)
+ * Handles transparent overlay header on desktop
+ * Adds solid background on scroll
  * Handles admin bar spacing for logged-in users
  */
 
@@ -11,7 +12,6 @@
         
         const body = document.body;
         const header = document.querySelector('.site-header');
-        const topbar = document.querySelector('.top-bar');
         const isAdminBar = body.classList.contains('admin-bar');
         
         if (!header) return;
@@ -20,8 +20,7 @@
         let ticking = false;
         
         function updateHeader(scrollTop) {
-            const isMobile = window.innerWidth < 768;
-            const isMobileAdminBar = window.innerWidth <= 782;
+            const isMobile = window.innerWidth < 992;
             
             // Add scrolled class after 50px
             if (scrollTop > 50) {
@@ -29,63 +28,26 @@
                 if (header) {
                     header.classList.add('is-sticky');
                 }
-                
-                // Hide topbar on scroll (desktop only)
-                if (topbar && !isMobile) {
-                    topbar.style.transform = 'translateY(-100%)';
-                }
-                
-                // Adjust header position when scrolled
-                if (isMobile) {
-                    // MOBILE BEHAVIOR
-                    if (isAdminBar) {
-                        // Mobile with admin bar - stick below admin bar
-                        header.style.top = '46px';
-                    } else {
-                        // Mobile without admin bar - stick to top
-                        header.style.top = '0';
-                    }
-                } else {
-                    // DESKTOP BEHAVIOR
-                    if (isAdminBar) {
-                        // Desktop admin bar (32px)
-                        header.style.top = '32px';
-                    } else {
-                        // No admin bar - stick to top
-                        header.style.top = '0';
-                    }
-                }
-                
             } else {
                 // AT TOP OF PAGE
                 body.classList.remove('scrolled');
                 if (header) {
                     header.classList.remove('is-sticky');
                 }
-                
-                // Show topbar when at top (desktop only)
-                if (topbar && !isMobile) {
-                    topbar.style.transform = 'translateY(0)';
-                }
-                
-                // Reset header position to original
+            }
+            
+            // Handle admin bar positioning
+            if (isAdminBar) {
                 if (isMobile) {
-                    // MOBILE - No topbar
-                    if (isAdminBar) {
-                        header.style.top = '46px';
-                    } else {
-                        header.style.top = '0';
-                    }
+                    // Mobile with admin bar
+                    header.style.top = '46px';
                 } else {
-                    // DESKTOP
-                    if (isAdminBar) {
-                        // Desktop: admin bar (32px) + topbar (45px)
-                        header.style.top = '77px';
-                    } else {
-                        // Desktop: only topbar (45px)
-                        header.style.top = '45px';
-                    }
+                    // Desktop with admin bar
+                    header.style.top = '32px';
                 }
+            } else {
+                // No admin bar - header at top
+                header.style.top = '0';
             }
             
             lastScrollTop = scrollTop;

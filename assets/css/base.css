@@ -36,7 +36,7 @@ html {
     font-size: 16px;
     height: 100%;
     background-color: #ffffff;
-    scroll-padding-top: var(--header-total-height);
+    scroll-padding-top: var(--header-height);
 }
 
 body {
@@ -48,17 +48,21 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100%;
-    padding-top: var(--header-height);
+    /* REMOVED padding-top - Header is now overlay */
 }
 
-@media (min-width: 768px) {
+/* Mobile gets padding for fixed header */
+@media (max-width: 991px) {
     body {
-        padding-top: var(--header-total-height);
+        padding-top: 80px;
     }
 }
 
-body.no-topbar {
-    padding-top: var(--header-height);
+/* Desktop - NO padding, header is overlay */
+@media (min-width: 992px) {
+    body {
+        padding-top: 0;
+    }
 }
 
 body.menu-open,

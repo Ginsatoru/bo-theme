@@ -1,5 +1,6 @@
 /* ==========================================================================
-   Mobile Menu (Sidebar)
+   Mobile Menu (Sidebar) - UNCHANGED
+   Mobile menu remains exactly the same with solid backgrounds
    ========================================================================== */
 
 .mobile-menu-toggle {
@@ -17,7 +18,7 @@
   position: relative;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
   .mobile-menu-toggle {
     display: none;
   }
@@ -64,7 +65,7 @@
 }
 
 /* Mobile Navigation Sidebar */
-@media (max-width: 1023px) {
+@media (max-width: 991px) {
   .main-navigation {
     display: block;
     position: fixed;
