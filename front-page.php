@@ -2,6 +2,13 @@
 /**
  * The front page template file front-page.php
  */
+
+// Add body class for homepage with hero
+add_filter('body_class', function($classes) {
+    $classes[] = 'has-transparent-header';
+    return $classes;
+});
+
 get_header();
 ?>
 
@@ -42,3 +49,4 @@ if (get_theme_mod('show_newsletter', true)) {
 
 <?php
 get_footer();
+?>

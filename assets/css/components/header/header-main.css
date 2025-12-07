@@ -17,11 +17,19 @@
 @import '_dropdowns.css';
 
 /* ==========================================================================
+   REMOVE WORDPRESS ADMIN BAR BODY MARGIN - CRITICAL FIX
+   ========================================================================== */
+
+/* Remove the default WordPress body margin when admin bar is present */
+body.admin-bar {
+  margin-top: 0 !important;
+}
+
+/* ==========================================================================
    MAIN HEADER CONTAINER - OVERLAY VERSION
    ========================================================================== */
 
 .site-header {
-  /* margin-top: -32px !important; */
   position: fixed;
   top: 0;
   left: 0;
@@ -35,14 +43,37 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-/* Handle WordPress admin bar */
-.admin-bar .site-header {
-  top: 32px; /* Desktop admin bar */
+/* ========================================================================== 
+   ADMIN BAR FIX - POSITION HEADER TIGHT TO ADMIN BAR
+   ========================================================================== */
+
+/* Desktop admin bar (782px and above) */
+@media (min-width: 782px) {
+  /* Non-homepage pages - sit tight to admin bar */
+  body.admin-bar:not(.home):not(.page-template-homepage) .site-header {
+    top: 32px !important; /* Position right at the bottom of admin bar (32px height) */
+  }
+  
+  /* Homepage - keep tight to top (overlay on hero) */
+  body.admin-bar.home .site-header,
+  body.admin-bar.page-template-homepage .site-header {
+    top: 32px !important; /* Sit right below admin bar */
+    margin-top: 0 !important; /* No negative margin */
+  }
 }
 
+/* Mobile admin bar (below 782px) */
 @media (max-width: 782px) {
-  .admin-bar .site-header {
-    top: 46px; /* Mobile admin bar */
+  /* Non-homepage pages - sit tight to admin bar */
+  body.admin-bar:not(.home):not(.page-template-homepage) .site-header {
+    top: 46px !important; /* Position right at the bottom of admin bar (46px height) */
+  }
+  
+  /* Homepage - keep tight to top (overlay on hero) */
+  body.admin-bar.home .site-header,
+  body.admin-bar.page-template-homepage .site-header {
+    top: 46px !important; /* Sit right below admin bar */
+    margin-top: 0 !important; /* No negative margin */
   }
 }
 
@@ -54,16 +85,6 @@
     backdrop-filter: none !important;
     border-bottom: none !important;
     box-shadow: none !important;
-  }
-  
-  /* Override inline styles from JavaScript - force to 0 when NOT admin bar */
-  body:not(.admin-bar) .site-header {
-    top: 0 !important;
-  }
-  
-  /* With admin bar, stay at 32px */
-  .admin-bar .site-header {
-    top: 32px !important;
   }
 
   /* Add subtle text shadow for readability over hero images */
@@ -89,25 +110,47 @@
     color: white !important;
   }
 
-  /* Search bar styling for overlay */
+  /* Search bar styling for overlay - MORE TRANSPARENT, NO BLUR */
   .site-header .header-search-bar .search-field {
-    background: rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: none;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: white !important;
   }
 
   .site-header .header-search-bar .search-field::placeholder {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
   }
 
   .site-header .header-search-bar .search-field:focus {
-    background: rgba(255, 255, 255, 0.25) !important;
-    border-color: rgba(255, 255, 255, 0.5) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: none;
+    outline: none;
+    color: white !important;
+  }
+  
+  /* Keep text white when typing */
+  .site-header .header-search-bar .search-field:active,
+  .site-header .header-search-bar .search-field:focus:active {
+    color: white !important;
+  }
+
+  .site-header .header-search-bar .search-submit {
+    transition: all 0.2s ease;
+  }
+
+  .site-header .header-search-bar .search-submit:hover {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
   }
 
   .site-header .header-search-bar .search-submit svg {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .site-header .header-search-bar .search-submit:hover svg {
+    color: white !important;
   }
 
   /* Hover states for nav links */
@@ -119,7 +162,12 @@
     background: rgba(255, 255, 255, 0.9) !important;
   }
 
-  /* Hover states for header actions */
+  /* Hover states for header actions - Simple background change */
+  .site-header .header-action:hover {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+  }
+  
   .site-header .header-action:hover svg {
     color: white !important;
   }
@@ -172,8 +220,17 @@
     border-color: var(--brand-color) !important;
   }
 
+  .site-header.is-sticky .header-search-bar .search-submit:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+  }
+
   .site-header.is-sticky .header-search-bar .search-submit svg {
     color: var(--color-text) !important;
+  }
+
+  .site-header.is-sticky .header-search-bar .search-submit:hover svg {
+    color: var(--brand-color) !important;
   }
 
   .site-header.is-sticky .nav-menu > li > a::after {
@@ -183,6 +240,12 @@
   /* Hover states when scrolled - back to original colors */
   .site-header.is-sticky .nav-menu > li > a:hover {
     color: var(--brand-color) !important;
+  }
+
+  /* Light gray hover background after scroll */
+  .site-header.is-sticky .header-action:hover {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-radius: 6px;
   }
 
   .site-header.is-sticky .header-action:hover svg {
@@ -207,18 +270,18 @@
   gap: var(--space-6);
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 1rem; /* Simplified padding - NO negative margin */
+  padding: 0 1rem;
 }
 
 @media (min-width: 768px) {
   .header-inner {
-    padding: 0 1.5rem; /* Simplified padding */
+    padding: 0 1.5rem;
   }
 }
 
 @media (min-width: 992px) {
   .header-inner {
-    padding: 0 2rem; /* Simplified padding */
+    padding: 0 2rem;
   }
 }
 

@@ -1,0 +1,394 @@
+/* ============================================
+   SHOP 71% WIDTH LAYOUT - ULTRA AGGRESSIVE
+   Multiple targeting strategies to ensure it works
+   ============================================ */
+
+/* Strategy 1: Target .site-main */
+body.woocommerce-shop .site-main,
+body.post-type-archive-product .site-main,
+body.tax-product_cat .site-main,
+body.tax-product_tag .site-main {
+  max-width: 71% !important;
+  margin: 0 auto !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Strategy 2: Target .shop-page-wrapper */
+body.woocommerce-shop .shop-page-wrapper,
+body.post-type-archive-product .shop-page-wrapper,
+body.tax-product_cat .shop-page-wrapper,
+body.tax-product_tag .shop-page-wrapper {
+  max-width: 71% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Strategy 3: Target direct .woocommerce wrapper */
+body.woocommerce-shop > .woocommerce,
+body.post-type-archive-product > .woocommerce,
+body.tax-product_cat > .woocommerce,
+body.tax-product_tag > .woocommerce {
+  max-width: 71% !important;
+  margin: 0 auto !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Strategy 4: Target .site > main */
+body.woocommerce-shop .site > main,
+body.post-type-archive-product .site > main,
+body.tax-product_cat .site > main,
+body.tax-product_tag .site > main {
+  max-width: 71% !important;
+  margin: 0 auto !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* DO NOT restrict .site-main or .woocommerce - let them be 100% */
+body.woocommerce-shop .site-main,
+body.woocommerce-shop .woocommerce,
+body.post-type-archive-product .site-main,
+body.post-type-archive-product .woocommerce,
+body.tax-product_cat .site-main,
+body.tax-product_cat .woocommerce,
+body.tax-product_tag .site-main,
+body.tax-product_tag .woocommerce {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure shop layout takes full width */
+body.woocommerce-shop .shop-layout,
+body.post-type-archive-product .shop-layout,
+body.tax-product_cat .shop-layout,
+body.tax-product_tag .shop-layout {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* ============================================
+   PRODUCT GRID - FIXED COLUMNS
+   ============================================ */
+
+/* Override the auto-fill and use fixed 4 columns */
+body.woocommerce-shop .products,
+body.woocommerce-shop ul.products,
+body.post-type-archive-product .products,
+body.post-type-archive-product ul.products,
+body.tax-product_cat .products,
+body.tax-product_cat ul.products,
+body.tax-product_tag .products,
+body.tax-product_tag ul.products {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 0 40px 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* Ensure product items don't have weird spacing */
+body.woocommerce-shop .products li.product,
+body.woocommerce-shop ul.products li.product,
+body.post-type-archive-product .products li.product,
+body.post-type-archive-product ul.products li.product,
+body.tax-product_cat .products li.product,
+body.tax-product_cat ul.products li.product,
+body.tax-product_tag .products li.product,
+body.tax-product_tag ul.products li.product {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  float: none !important;
+}
+
+/* ============================================
+   REDUCE VERTICAL SPACING
+   ============================================ */
+
+/* Reduce spacing above products */
+body.woocommerce-shop .woocommerce-products-header,
+body.post-type-archive-product .woocommerce-products-header,
+body.tax-product_cat .woocommerce-products-header,
+body.tax-product_tag .woocommerce-products-header {
+  margin-bottom: 24px !important; /* Reduced from default */
+  padding: 20px 0 !important; /* Reduced padding */
+}
+
+/* Reduce spacing for result count and ordering */
+body.woocommerce-shop .woocommerce-result-count,
+body.post-type-archive-product .woocommerce-result-count,
+body.tax-product_cat .woocommerce-result-count,
+body.tax-product_tag .woocommerce-result-count {
+  margin-bottom: 16px !important;
+}
+
+body.woocommerce-shop .woocommerce-ordering,
+body.post-type-archive-product .woocommerce-ordering,
+body.tax-product_cat .woocommerce-ordering,
+body.tax-product_tag .woocommerce-ordering {
+  margin-bottom: 24px !important;
+}
+
+/* ============================================
+   IMPROVE PRODUCT CARDS
+   ============================================ */
+
+/* Make buttons single line */
+body.woocommerce-shop .add_to_cart_button,
+body.woocommerce-shop .product_type_simple,
+body.woocommerce-shop .product_type_variable,
+body.post-type-archive-product .add_to_cart_button,
+body.post-type-archive-product .product_type_simple,
+body.post-type-archive-product .product_type_variable,
+body.tax-product_cat .add_to_cart_button,
+body.tax-product_cat .product_type_simple,
+body.tax-product_cat .product_type_variable,
+body.tax-product_tag .add_to_cart_button,
+body.tax-product_tag .product_type_simple,
+body.tax-product_tag .product_type_variable {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  font-size: 14px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* ============================================
+   DO NOT APPLY TO SINGLE PRODUCT PAGES
+   ============================================ */
+
+body.single-product .site-main,
+body.single-product .woocommerce {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+}
+
+/* ============================================
+   FORCE FOOTER TO FULL WIDTH
+   ============================================ */
+
+/* Allow footer to escape the 71% container */
+body.woocommerce-shop .shop-page-wrapper,
+body.post-type-archive-product .shop-page-wrapper,
+body.tax-product_cat .shop-page-wrapper,
+body.tax-product_tag .shop-page-wrapper {
+  overflow: visible !important;
+}
+
+/* Make footer break out to full width */
+body.woocommerce-shop .site-footer,
+body.post-type-archive-product .site-footer,
+body.tax-product_cat .site-footer,
+body.tax-product_tag .site-footer {
+  position: relative !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Target footer background wrappers */
+body.woocommerce-shop .site-footer::before,
+body.woocommerce-shop .site-footer::after,
+body.post-type-archive-product .site-footer::before,
+body.post-type-archive-product .site-footer::after,
+body.tax-product_cat .site-footer::before,
+body.tax-product_cat .site-footer::after,
+body.tax-product_tag .site-footer::before,
+body.tax-product_tag .site-footer::after {
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Ensure footer sections span full width */
+body.woocommerce-shop .site-footer > *,
+body.post-type-archive-product .site-footer > *,
+body.tax-product_cat .site-footer > *,
+body.tax-product_tag .site-footer > * {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Center footer content properly */
+body.woocommerce-shop .site-footer .container,
+body.woocommerce-shop .site-footer .footer-main .container,
+body.woocommerce-shop .site-footer .footer-bottom .container,
+body.post-type-archive-product .site-footer .container,
+body.post-type-archive-product .site-footer .footer-main .container,
+body.post-type-archive-product .site-footer .footer-bottom .container,
+body.tax-product_cat .site-footer .container,
+body.tax-product_cat .site-footer .footer-main .container,
+body.tax-product_cat .site-footer .footer-bottom .container,
+body.tax-product_tag .site-footer .container,
+body.tax-product_tag .site-footer .footer-main .container,
+body.tax-product_tag .site-footer .footer-bottom .container {
+  max-width: 1280px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure footer main and bottom sections have full width backgrounds */
+body.woocommerce-shop .footer-main,
+body.woocommerce-shop .footer-bottom,
+body.post-type-archive-product .footer-main,
+body.post-type-archive-product .footer-bottom,
+body.tax-product_cat .footer-main,
+body.tax-product_cat .footer-bottom,
+body.tax-product_tag .footer-main,
+body.tax-product_tag .footer-bottom {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ============================================
+   FIX SCROLL TO TOP BUTTON
+   ============================================ */
+
+body.woocommerce-shop .scroll-to-top,
+body.woocommerce-shop #scroll-to-top,
+body.woocommerce-shop .back-to-top,
+body.woocommerce-shop #back-to-top,
+body.woocommerce-shop [class*="scroll-top"],
+body.woocommerce-shop [id*="scroll-top"],
+body.post-type-archive-product .scroll-to-top,
+body.post-type-archive-product #scroll-to-top,
+body.post-type-archive-product .back-to-top,
+body.post-type-archive-product #back-to-top,
+body.post-type-archive-product [class*="scroll-top"],
+body.post-type-archive-product [id*="scroll-top"],
+body.tax-product_cat .scroll-to-top,
+body.tax-product_cat #scroll-to-top,
+body.tax-product_cat .back-to-top,
+body.tax-product_cat #back-to-top,
+body.tax-product_cat [class*="scroll-top"],
+body.tax-product_cat [id*="scroll-top"],
+body.tax-product_tag .scroll-to-top,
+body.tax-product_tag #scroll-to-top,
+body.tax-product_tag .back-to-top,
+body.tax-product_tag #back-to-top,
+body.tax-product_tag [class*="scroll-top"],
+body.tax-product_tag [id*="scroll-top"] {
+  width: auto !important;
+  max-width: 60px !important;
+  height: auto !important;
+  max-height: 60px !important;
+  display: inline-flex !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  margin: 0 !important;
+  padding: 12px !important;
+  z-index: 999 !important;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Large Desktop - 1600px and below */
+@media (max-width: 1600px) {
+  body.woocommerce-shop .site-main,
+  body.post-type-archive-product .site-main,
+  body.tax-product_cat .site-main,
+  body.tax-product_tag .site-main {
+    max-width: 75% !important;
+  }
+}
+
+/* Desktop - 1400px and below */
+@media (max-width: 1400px) {
+  body.woocommerce-shop .site-main,
+  body.post-type-archive-product .site-main,
+  body.tax-product_cat .site-main,
+  body.tax-product_tag .site-main {
+    max-width: 85% !important;
+  }
+  
+  body.woocommerce-shop .products,
+  body.woocommerce-shop ul.products,
+  body.post-type-archive-product .products,
+  body.post-type-archive-product ul.products,
+  body.tax-product_cat .products,
+  body.tax-product_cat ul.products,
+  body.tax-product_tag .products,
+  body.tax-product_tag ul.products {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Tablet - 1200px and below */
+@media (max-width: 1200px) {
+  body.woocommerce-shop .site-main,
+  body.post-type-archive-product .site-main,
+  body.tax-product_cat .site-main,
+  body.tax-product_tag .site-main {
+    max-width: 92% !important;
+  }
+  
+  body.woocommerce-shop .products,
+  body.woocommerce-shop ul.products,
+  body.post-type-archive-product .products,
+  body.post-type-archive-product ul.products,
+  body.tax-product_cat .products,
+  body.tax-product_cat ul.products,
+  body.tax-product_tag .products,
+  body.tax-product_tag ul.products {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Mobile - 768px and below */
+@media (max-width: 768px) {
+  body.woocommerce-shop .site-main,
+  body.post-type-archive-product .site-main,
+  body.tax-product_cat .site-main,
+  body.tax-product_tag .site-main {
+    max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  body.woocommerce-shop .products,
+  body.woocommerce-shop ul.products,
+  body.post-type-archive-product .products,
+  body.post-type-archive-product ul.products,
+  body.tax-product_cat .products,
+  body.tax-product_cat ul.products,
+  body.tax-product_tag .products,
+  body.tax-product_tag ul.products {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Small Mobile - 480px and below */
+@media (max-width: 480px) {
+  body.woocommerce-shop .products,
+  body.woocommerce-shop ul.products,
+  body.post-type-archive-product .products,
+  body.post-type-archive-product ul.products,
+  body.tax-product_cat .products,
+  body.tax-product_cat ul.products,
+  body.tax-product_tag .products,
+  body.tax-product_tag ul.products {
+    grid-template-columns: 1fr !important;
+  }
+}

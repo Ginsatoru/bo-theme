@@ -1,6 +1,7 @@
 /* main.css */
 
 /* Import all CSS components */
+@import 'comonents/shop-custom.css';
 @import 'variables.css';
 @import 'base.css';
 @import 'layout.css';

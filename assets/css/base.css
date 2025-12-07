@@ -1,10 +1,6 @@
 /**
- * Base Styles - Reset & Typography
- * 
- * Modern CSS reset with typography system and utility classes.
- * Establishes foundation for all other styles.
- * 
- * @package Macedon_Ranges
+ * Base Styles - Reset & Typography (UPDATED)
+ * Body padding rules for transparent vs solid header
  */
 
 /* ============================================
@@ -28,7 +24,7 @@ html {
 }
 
 /* ============================================
-   HTML & BODY
+   HTML & BODY - UPDATED PADDING LOGIC
    ============================================ */
 
 html {
@@ -48,20 +44,54 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100%;
-    /* REMOVED padding-top - Header is now overlay */
 }
 
-/* Mobile gets padding for fixed header */
+/* ============================================
+   BODY PADDING - ADMIN BAR FIX (NON-HOMEPAGE ONLY)
+   ============================================ */
+
+/* Mobile: Always has padding for fixed header */
 @media (max-width: 991px) {
     body {
         padding-top: 80px;
     }
+    
+    /* Mobile WITH admin bar - add admin bar height (NON-HOMEPAGE ONLY) */
+    body.admin-bar:not(.home):not(.page-template-homepage) {
+        padding-top: 126px; /* 80px header + 46px admin bar */
+    }
+    
+    /* Mobile homepage with transparent header */
+    body.has-transparent-header {
+        padding-top: 80px;
+    }
+    
+    /* Mobile homepage with transparent header AND admin bar - NO CHANGE */
+    body.has-transparent-header.admin-bar {
+        padding-top: 80px; /* Keep original padding for homepage */
+    }
 }
 
-/* Desktop - NO padding, header is overlay */
+/* Desktop: Padding based on page type and admin bar state */
 @media (min-width: 992px) {
+    /* Default - all pages get padding for header */
     body {
+        padding-top: 90px;
+    }
+    
+    /* Non-homepage pages WITH admin bar - add admin bar height */
+    body.admin-bar:not(.home):not(.page-template-homepage) {
+        padding-top: 122px; /* 90px header + 32px admin bar */
+    }
+    
+    /* Homepage with transparent header - NO padding */
+    body.has-transparent-header {
         padding-top: 0;
+    }
+    
+    /* Homepage with transparent header AND admin bar - NO CHANGE, keep original */
+    body.has-transparent-header.admin-bar {
+        padding-top: 0; /* Keep homepage as is */
     }
 }
 

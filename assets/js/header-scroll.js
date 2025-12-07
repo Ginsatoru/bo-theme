@@ -1,8 +1,8 @@
 /**
- * Header Scroll Behavior - OVERLAY VERSION (FIXED)
- * Handles transparent overlay header on desktop
- * Adds solid background on scroll
- * Handles admin bar spacing for logged-in users
+ * Header Scroll Behavior - CONDITIONAL OVERLAY VERSION
+ * Handles transparent overlay header ONLY on homepage
+ * Keeps solid background on all other pages
+ * Properly handles admin bar positioning
  */
 
 (function() {
@@ -13,6 +13,7 @@
         const body = document.body;
         const header = document.querySelector('.site-header');
         const isAdminBar = body.classList.contains('admin-bar');
+        const hasTransparentHeader = body.classList.contains('has-transparent-header');
         
         if (!header) return;
         
@@ -20,29 +21,35 @@
         let ticking = false;
         
         function updateHeader(scrollTop) {
-            const isMobile = window.innerWidth < 992;
+            const isMobile = window.innerWidth < 782;
             
-            // Add scrolled class after 50px
-            if (scrollTop > 50) {
-                body.classList.add('scrolled');
-                if (header) {
-                    header.classList.add('is-sticky');
+            // Only add/remove scrolled class on homepage with transparent header
+            if (hasTransparentHeader) {
+                // Add scrolled class after 50px
+                if (scrollTop > 50) {
+                    body.classList.add('scrolled');
+                    if (header) {
+                        header.classList.add('is-sticky');
+                    }
+                } else {
+                    // AT TOP OF PAGE
+                    body.classList.remove('scrolled');
+                    if (header) {
+                        header.classList.remove('is-sticky');
+                    }
                 }
             } else {
-                // AT TOP OF PAGE
-                body.classList.remove('scrolled');
-                if (header) {
-                    header.classList.remove('is-sticky');
-                }
+                // For other pages, always keep the sticky class (solid background)
+                header.classList.add('is-sticky');
             }
             
             // Handle admin bar positioning
             if (isAdminBar) {
                 if (isMobile) {
-                    // Mobile with admin bar
+                    // Mobile with admin bar (screens < 782px)
                     header.style.top = '46px';
                 } else {
-                    // Desktop with admin bar
+                    // Desktop with admin bar (screens >= 782px)
                     header.style.top = '32px';
                 }
             } else {
